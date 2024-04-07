@@ -232,7 +232,7 @@ namespace ISM6225_Spring_2024_Assignment_2
                             int complement = target - nums[j];
                             if (seen.Contains(complement))
                             {
-                                // Found a triplet, add it to the result list
+                                // found a triplet, add it to the result list
                                 result.Add(new List<int> { nums[i], complement, nums[j] });
 
                                 // Skip the duplicates
