@@ -99,7 +99,7 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                if (nums.Length == 0)
+                if (nums.Length == 0|| nums == null)//Handling empty or no elements array 
                     return 0;
 
                 int index = 1; //Position pointer for next unique element
@@ -147,23 +147,30 @@ namespace ISM6225_Spring_2024_Assignment_2
 
             try
             {
-                int n = nums.Length;
-                List<int> result = new List<int>();
-                foreach (int num in nums)
+                if (nums == null || nums.Length == 0)//Handling empty or no elements array 
                 {
-                    if (num != 0)
+                    return new List<int>();
+                }
+                else
+                {
+                    int n = nums.Length;//Determining the array length 
+                    List<int> result = new List<int>();
+                    foreach (int num in nums)
                     {
-                        result.Add(num);//Add non-zero elements to the new array
+                        if (num != 0)
+                        {
+                            result.Add(num);//Add non-zero elements to the new array
+                        }
                     }
-                }
 
-               
-                while (result.Count < n)
-                {
-                    result.Add(0); // Fill the remaining slots with zeroes
-                }
 
-                return result;
+                    while (result.Count < n)
+                    {
+                        result.Add(0); // Fill the remaining slots with zeroes
+                    }
+
+                    return result;
+                }
             }
             catch (Exception)
             {
@@ -215,7 +222,7 @@ namespace ISM6225_Spring_2024_Assignment_2
             try
             {
                 Array.Sort(nums);
-                IList<IList<int>> result = new List<IList<int>>();
+                IList<IList<int>> result = new List<IList<int>>();//list that can contain other lists
 
                 // Iterate through the array
                 for (int i = 0; i < nums.Length - 2; i++)
@@ -282,14 +289,14 @@ namespace ISM6225_Spring_2024_Assignment_2
 
                 foreach (int num in nums)
                 {
-                    if (num == 1) 
+                    if (num == 1)
                     {
                         currentConsecutive++;
-                        maxConsecutive = Math.Max(maxConsecutive, currentConsecutive); 
+                        maxConsecutive = Math.Max(maxConsecutive, currentConsecutive);
                     }
-                    else 
+                    else
                     {
-                        currentConsecutive = 0; 
+                        currentConsecutive = 0;
                     }
                 }
 
@@ -504,7 +511,7 @@ namespace ISM6225_Spring_2024_Assignment_2
                     // Remove the leftmost occurrence of 'part' from 's'
                     s = s.Remove(index, part.Length);
                 }
-         
+
                 return s;
             }
             catch (Exception)
