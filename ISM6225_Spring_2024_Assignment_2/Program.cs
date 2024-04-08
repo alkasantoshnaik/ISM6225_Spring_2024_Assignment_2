@@ -99,20 +99,20 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                if (nums.Length == 0|| nums == null)//Handling empty or no elements array 
+                if (nums.Length == 0 || nums == null)//Handling empty or no elements Array.
                     return 0;
 
-                int index = 1; //Position pointer for next unique element
+                int index = 1; //Position pointer for next unique element.
                 for (int i = 1; i < nums.Length; i++)
                 {
-                    // If current element is different from the previous element, move it to the index position
+                    // If current element is different from the previous element, move it to the index position.
                     if (nums[i] != nums[i - 1])
                     {
                         nums[index++] = nums[i];
                     }
                 }
 
-                return index; // Return's index, which stores the count of unique elements
+                return index; // Return's index, which stores the count of unique elements.
             }
             catch (Exception)
             {
@@ -147,26 +147,26 @@ namespace ISM6225_Spring_2024_Assignment_2
 
             try
             {
-                if (nums == null || nums.Length == 0)//Handling empty or no elements array 
+                if (nums == null || nums.Length == 0)//Handling empty or no elements Array.
                 {
                     return new List<int>();
                 }
                 else
                 {
-                    int n = nums.Length;//Determining the array length 
+                    int n = nums.Length;//Determining the array length.
                     List<int> result = new List<int>();
                     foreach (int num in nums)
                     {
                         if (num != 0)
                         {
-                            result.Add(num);//Add non-zero elements to the new array
+                            result.Add(num);//Add non-zero elements to the new Array.
                         }
                     }
 
 
                     while (result.Count < n)
                     {
-                        result.Add(0); // Fill the remaining slots with zeroes
+                        result.Add(0); // Fill the remaining slots with zeroes.
                     }
 
                     return result;
@@ -221,36 +221,33 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                Array.Sort(nums);
-                IList<IList<int>> result = new List<IList<int>>();//list that can contain other lists
+                Array.Sort(nums); // Sort the input Array.
+                IList<IList<int>> result = new List<IList<int>>(); // Initialize a list to store the resulting triplets
 
-                // Iterate through the array
                 for (int i = 0; i < nums.Length - 2; i++)
                 {
-                    if (i == 0 || (i > 0 && nums[i] != nums[i - 1]))
+                    if (i == 0 || nums[i] != nums[i - 1])
                     {
-                        // Create a hash set to store unique pairs
-                        HashSet<int> seen = new HashSet<int>();
-                        int target = 0 - nums[i];
-
-                        // Iterate through the remaining elements
-                        for (int j = i + 1; j < nums.Length; j++)
+                        for (int j = i + 1; j < nums.Length - 1; j++)
                         {
-                            int complement = target - nums[j];
-                            if (seen.Contains(complement))
+                            if ((j == i + 1 || nums[j] != nums[j - 1]))
                             {
-                                // found a triplet, add it to the result list
-                                result.Add(new List<int> { nums[i], complement, nums[j] });
-
-                                // Skip the duplicates
-                                while (j < nums.Length - 1 && nums[j] == nums[j + 1]) j++;
+                                int target = 0 - nums[i] - nums[j];
+                                for (int k = j + 1; k < nums.Length; k++)
+                                {
+                                    // Check if the current element equals the target value
+                                    if (nums[k] == target)
+                                    {
+                                        result.Add(new List<int> { nums[i], nums[j], nums[k] });
+                                        break; // Break out of the inner loop since we found a valid triplet
+                                    }
+                                }
                             }
-                            seen.Add(nums[j]);
                         }
                     }
                 }
 
-                return result;
+                return result; // Return the list of resulting triplets.
             }
             catch (Exception)
             {
@@ -284,8 +281,8 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                int maxConsecutive = 0; //  Store's the maximum consecutive ones
-                int currentConsecutive = 0; //  Store's the current consecutive ones
+                int maxConsecutive = 0; //  Store's the maximum consecutive ones.
+                int currentConsecutive = 0; //  Store's the current consecutive ones.
 
                 foreach (int num in nums)
                 {
