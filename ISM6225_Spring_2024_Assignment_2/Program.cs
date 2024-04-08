@@ -337,13 +337,13 @@ namespace ISM6225_Spring_2024_Assignment_2
 
                 while (binary > 0)
                 {
-                    int lastDigit = binary % 10; // Extract the last digit
-                    binary /= 10; // Remove the last digit
+                    int lastDigit = binary % 10; // Extract the last digit.
+                    binary /= 10; // Remove the last digit.
 
-                    // Add the contribution of the current digit to the decimal number
+                    // Add the contribution of the current digit to the decimal number.
                     decimalNumber += lastDigit * baseValue;
 
-                    // Update the base value for the next digit
+                    // Update the base value for the next digit.
                     baseValue *= 2;
                 }
 
@@ -384,16 +384,15 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Check if the array has less than 2 elements
-                if (nums.Length < 2)
+                if (nums == null || nums.Length <= 1)//Handling empty Array or the Array having less than 2 elements.
                     return 0;
 
                 Array.Sort(nums);
-                int maxDiff = 0;// Initialize variable to store maximum difference
+                int maxDiff = 0;// Initialize variable to store maximum difference.
                 for (int i = 1; i < nums.Length; i++)
                 {
                     int diff = nums[i] - nums[i - 1];
-                    maxDiff = Math.Max(maxDiff, diff);
+                    maxDiff = Math.Max(maxDiff, diff);//always stores the new maximum difference.
                 }
                 return maxDiff;
             }
@@ -434,6 +433,9 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
+                if (nums == null || nums.Length <=2)//Handling empty Array or check 3 side's triangle logic .
+                    return 0;
+
                 Array.Sort(nums); // Sort the array in non-decreasing order
 
                 // Iterate from end to start 
@@ -501,11 +503,12 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                int index;
-                // Repeat until no more occurrences of 'part' are found
+                int index=0;//index is used to keep track of the index of the leftmost occurrence of the substring.
+
+                // Repeat's until no more occurrences of 'part' are found in 's'.
                 while ((index = s.IndexOf(part)) != -1)
                 {
-                    // Remove the leftmost occurrence of 'part' from 's'
+                    // Remove the leftmost occurrence of 'part' from 's'.
                     s = s.Remove(index, part.Length);
                 }
 
